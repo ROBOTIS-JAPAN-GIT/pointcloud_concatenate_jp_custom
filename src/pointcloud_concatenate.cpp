@@ -192,9 +192,22 @@ void PointcloudConcatenate::update() {
       }
     }
 
-    // Publish the concatenated pointcloud
+    // Publish the concatenated pointcloud applying filtering
     if (success) {
-      publishPointcloud(cloud_out);
+      pcl::VoxelGrid<pcl::PCLPointCloud2> sor;
+      pcl::PCLPointCloud2* cloud = new pcl::PCLPointCloud2; 
+      pcl::PCLPointCloud2ConstPtr cloudPtr(cloud);
+      pcl::PCLPointCloud2 cloud_filtered;
+      sensor_msgs::PointCloud2 output;
+    
+      pcl_conversions::toPCL(cloud_out, *cloud);
+      sor.setInputCloud (cloudPtr);
+      sor.setLeafSize (0.1f, 0.1f, 0.1f);
+      sor.filter (cloud_filtered);
+
+      pcl_conversions::fromPCL(cloud_filtered, output);
+
+      publishPointcloud(output);
     }
   }
 }
