@@ -10,6 +10,7 @@
 
 #include <pcl_ros/point_cloud.h>
 #include <pcl_ros/transforms.h>
+#include <pcl_ros/filters/voxel_grid.h>
 
 #include <sensor_msgs/PointCloud2.h>
 
