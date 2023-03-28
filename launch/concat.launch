@@ -1,6 +1,6 @@
 <launch>
   <!-- Arguments -->
-  <arg name="target_frame" default="odom" />
+  <arg name="target_frame" default="camera_front_depth_optical_frame" />
   <arg name="cloud_in1" default="/camera_front/depth/color/points" />
   <arg name="cloud_in2" default="/camera_left/depth/color/points" />
   <arg name="cloud_in3" default="/camera_right/depth/color/points" />
